@@ -14,6 +14,8 @@ setting_up_container
 network_check
 update_os
 
+msg_info "Setting up Twingate Connector"
+
 while true; do
   read -rp "Please enter your access token " access_token
   if [[ -z "$access_token" ]]; then
@@ -41,15 +43,13 @@ while true; do
   fi
 done
 
-msg_info "Setting up Twingate Connector"
-
-curl "https://binaries.twingate.com/connector/setup.sh" | sudo TWINGATE_ACCESS_TOKEN="${access_token}" TWINGATE_REFRESH_TOKEN="${refresh_token}" TWINGATE_NETWORK="${network}" TWINGATE_LABEL_DEPLOYED_BY="linux" bash
+$STD curl "https://binaries.twingate.com/connector/setup.sh" | sudo TWINGATE_ACCESS_TOKEN="${access_token}" TWINGATE_REFRESH_TOKEN="${refresh_token}" TWINGATE_NETWORK="${network}" TWINGATE_LABEL_DEPLOYED_BY="linux" bash
 if [[ $? -ne 0 ]]; then
     msg_error "Failed to set up Twingate Connector. Please check your tokens and network name."
     exit 1
 fi
 
-msg_info "Twingate Connector status: $(systemctl status twingate-connector)"
+echo -e "Twingate Connector status: $(systemctl status twingate-connector)"
 
 apt-get -y autoremove
 apt-get -y autoclean
