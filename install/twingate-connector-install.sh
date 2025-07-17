@@ -42,7 +42,7 @@ while true; do
   fi
 done
 
-msg_info "Installing Twingate Connector"
+msg_info "Installing Twingate Connector..."
 export TWINGATE_ACCESS_TOKEN="${access_token}"
 export TWINGATE_REFRESH_TOKEN="${refresh_token}"
 export TWINGATE_NETWORK="${network}"
@@ -52,14 +52,14 @@ if [[ $? -ne 0 ]]; then
     msg_error "Failed to set up Twingate Connector. Please check your tokens and network name."
     exit 1
 fi
-msg_ok "Twingate Connector installed successfully!"
+msg_ok "Twingate Connector installed!"
 
+msg_info "Starting Twingate Connector..."
 # give the connector time to start
 sleep 5s
+msg_ok "Twingate Connector started!"
 
 echo -e "${INFO}${YW} Twingate Connector status: $(systemctl status twingate-connector) ${CL}"
 
-msg_info "Cleaning up"
 $STD apt-get -y autoremove
 $STD apt-get -y autoclean
-msg_ok "Done"
