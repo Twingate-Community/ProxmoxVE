@@ -43,5 +43,4 @@ start
 build_container
 description
 
-msg_ok "Completed Successfully!\n"
-echo -e "${CREATING}${GN}${APP} setup has been successfully initialized!${CL}"
+msg_ok "All Finished! If you need to update your access or refresh tokens, they can be found in /etc/twingate/connector.conf"

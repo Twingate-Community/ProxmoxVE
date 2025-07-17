@@ -54,9 +54,12 @@ if [[ $? -ne 0 ]]; then
 fi
 msg_ok "Twingate Connector installed successfully!"
 
+# give the connector time to start
+sleep 5s
+
 echo -e "${INFO}${YW} Twingate Connector status: $(systemctl status twingate-connector) ${CL}"
 
-apt-get -y autoremove
-apt-get -y autoclean
-
-msg_info "If you need to update your access or refresh tokens, they can be found in /etc/twingate/connector.conf"
+msg_info "Cleaning up"
+$STD apt-get -y autoremove
+$STD apt-get -y autoclean
+msg_ok "Done"
