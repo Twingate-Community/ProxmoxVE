@@ -42,15 +42,15 @@ while true; do
   fi
 done
 
-echo -e "${INFO}${YW} Setting up Twingate Connector...${CL}"
-
-$STD curl "https://binaries.twingate.com/connector/setup.sh" | sudo TWINGATE_ACCESS_TOKEN="${access_token}" TWINGATE_REFRESH_TOKEN="${refresh_token}" TWINGATE_NETWORK="${network}" TWINGATE_LABEL_DEPLOYED_BY="linux" bash
+msg_info "Installing Twingate Connector"
+curl "https://binaries.twingate.com/connector/setup.sh" | $STD sudo TWINGATE_ACCESS_TOKEN="${access_token}" TWINGATE_REFRESH_TOKEN="${refresh_token}" TWINGATE_NETWORK="${network}" TWINGATE_LABEL_DEPLOYED_BY="linux" bash
 if [[ $? -ne 0 ]]; then
     msg_error "Failed to set up Twingate Connector. Please check your tokens and network name."
     exit 1
 fi
+msg_ok "Twingate Connector installed successfully!"
 
-echo -e "Twingate Connector status: $(systemctl status twingate-connector)"
+echo -e "${INFO}${YW} Twingate Connector status: $(systemctl status twingate-connector) ${CL}"
 
 apt-get -y autoremove
 apt-get -y autoclean
