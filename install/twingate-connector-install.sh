@@ -14,7 +14,6 @@ setting_up_container
 network_check
 update_os
 
-msg_info "Setting up Twingate Connector"
 
 while true; do
   read -rp "Please enter your access token " access_token
@@ -42,6 +41,8 @@ while true; do
     break
   fi
 done
+
+echo -e "${INFO}${YW} Setting up Twingate Connector...${CL}"
 
 $STD curl "https://binaries.twingate.com/connector/setup.sh" | sudo TWINGATE_ACCESS_TOKEN="${access_token}" TWINGATE_REFRESH_TOKEN="${refresh_token}" TWINGATE_NETWORK="${network}" TWINGATE_LABEL_DEPLOYED_BY="linux" bash
 if [[ $? -ne 0 ]]; then
