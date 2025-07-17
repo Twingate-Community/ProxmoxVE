@@ -1233,7 +1233,10 @@ EOF'
   fi
   msg_ok "Customized LXC Container"
 
-  lxc-attach -n "$CTID" -- bash -c "$(curl -fsSL https://github.com/twingate-andrewb/ProxmoxVE/blob/feat/twingate-connector/install/"$var_install".sh)" $?
+  curl -fsSL https://github.com/twingate-andrewb/ProxmoxVE/blob/feat/twingate-connector/install/"$var_install".sh >> "$TEMP_DIR/install.sh"
+  lxc-attach -n "$CTID" -- bash -c "$(cat "$TEMP_DIR"/install.sh)" $?
+
+  rm "$TEMP_DIR/install.sh"
 }
 
 # This function sets the description of the container.
