@@ -43,7 +43,11 @@ while true; do
 done
 
 msg_info "Installing Twingate Connector"
-curl -fsSL "https://binaries.twingate.com/connector/setup.sh" | sudo TWINGATE_ACCESS_TOKEN="${access_token}" TWINGATE_REFRESH_TOKEN="${refresh_token}" TWINGATE_NETWORK="${network}" TWINGATE_LABEL_DEPLOYED_BY="linux" "$STD" bash
+export TWINGATE_ACCESS_TOKEN="${access_token}"
+export TWINGATE_REFRESH_TOKEN="${refresh_token}"
+export TWINGATE_NETWORK="${network}"
+export TWINGATE_LABEL_DEPLOYED_BY="linux"
+curl -fsSL "https://binaries.twingate.com/connector/setup.sh" | bash >> /dev/null 2>&1
 if [[ $? -ne 0 ]]; then
     msg_error "Failed to set up Twingate Connector. Please check your tokens and network name."
     exit 1
