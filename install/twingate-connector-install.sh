@@ -43,12 +43,7 @@ done
 
 msg_info "Setting up Twingate Connector"
 
-export TWINGATE_ACCESS_TOKEN="${access_token}"
-export TWINGATE_REFRESH_TOKEN="${refresh_token}"
-export TWINGATE_NETWORK="${network}"
-export TWINGATE_LABEL_DEPLOYED_BY="linux"
-
-bash -c $(curl "https://binaries.twingate.com/connector/setup.sh")
+curl "https://binaries.twingate.com/connector/setup.sh" | sudo TWINGATE_ACCESS_TOKEN="${access_token}" TWINGATE_REFRESH_TOKEN="${refresh_token}" TWINGATE_NETWORK="${network}" TWINGATE_LABEL_DEPLOYED_BY="linux" bash
 if [[ $? -ne 0 ]]; then
     msg_error "Failed to set up Twingate Connector. Please check your tokens and network name."
     exit 1
