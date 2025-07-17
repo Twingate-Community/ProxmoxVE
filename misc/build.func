@@ -1233,7 +1233,7 @@ EOF'
   fi
   msg_ok "Customized LXC Container"
 
-  curl -fsSL https://github.com/twingate-andrewb/ProxmoxVE/blob/feat/twingate-connector/install/"$var_install".sh >> "$TEMP_DIR/install.sh"
+  curl -fsSL https://raw.githubusercontent.com/twingate-andrewb/ProxmoxVE/refs/heads/feat/twingate-connector/install/"$var_install".sh >> "$TEMP_DIR/install.sh"
   echo $(cat "$TEMP_DIR/install.sh")
   lxc-attach -n "$CTID" -- bash -c "$(cat "$TEMP_DIR"/install.sh)" $?
 }
