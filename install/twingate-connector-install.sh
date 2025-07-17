@@ -16,7 +16,7 @@ update_os
 
 
 while true; do
-  read -rp "Please enter your access token " access_token
+  read -rp "Please enter your access token: " access_token
   if [[ -z "$access_token" ]]; then
     msg_error "Access token cannot be empty. Please try again."
   else
@@ -25,7 +25,7 @@ while true; do
 done
 
 while true; do
-  read -rp "Please enter your refresh token " refresh_token
+  read -rp "Please enter your refresh token: " refresh_token
   if [[ -z "$refresh_token" ]]; then
     msg_error "Refresh token cannot be empty. Please try again."
   else
@@ -34,7 +34,7 @@ while true; do
 done
 
 while true; do
-  read -rp "Please enter your network name " network
+  read -rp "Please enter your network name: " network
   if [[ -z "$network" ]]; then
     msg_error "Network cannot be empty. Please try again."
   else
@@ -43,7 +43,7 @@ while true; do
 done
 
 msg_info "Installing Twingate Connector"
-curl "https://binaries.twingate.com/connector/setup.sh" | $STD sudo TWINGATE_ACCESS_TOKEN="${access_token}" TWINGATE_REFRESH_TOKEN="${refresh_token}" TWINGATE_NETWORK="${network}" TWINGATE_LABEL_DEPLOYED_BY="linux" bash
+curl -fsSL "https://binaries.twingate.com/connector/setup.sh" | sudo TWINGATE_ACCESS_TOKEN="${access_token}" TWINGATE_REFRESH_TOKEN="${refresh_token}" TWINGATE_NETWORK="${network}" TWINGATE_LABEL_DEPLOYED_BY="linux" "$STD" bash
 if [[ $? -ne 0 ]]; then
     msg_error "Failed to set up Twingate Connector. Please check your tokens and network name."
     exit 1
