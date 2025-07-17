@@ -14,9 +14,6 @@ setting_up_container
 network_check
 update_os
 
-TEMP_DIR=$(mktemp -d)
-pushd "$TEMP_DIR" >/dev/null || exit
-
 while true; do
   read -rp "Please enter your access token " access_token
   if [[ -z "$access_token" ]]; then
@@ -45,14 +42,7 @@ while true; do
 done
 
 msg_info "Setting up Twingate Connector"
-export TWINGATE_ACCESS_TOKEN="${access_token}"
-export TWINGATE_REFRESH_TOKEN="${refresh_token}"
-export TWINGATE_NETWORK="${network}"
-export TWINGATE_LABEL_DEPLOYED_BY="linux"
-$STD curl "https://binaries.twingate.com/connector/setup.sh" >> "$TEMP_DIR/install.sh"
-chmod +x "$TEMP_DIR/install.sh"
-
-bash "$(cat "$TEMP_DIR"/install.sh)"
+$STD curl "https://binaries.twingate.com/connector/setup.sh" | sudo TWINGATE_ACCESS_TOKEN="${access_token}" TWINGATE_REFRESH_TOKEN="${refresh_token}" TWINGATE_NETWORK="${network}" TWINGATE_LABEL_DEPLOYED_BY="linux" bash
 
 if [[ $? -ne 0 ]]; then
     msg_error "Failed to set up Twingate Connector. Please check your tokens and network name."
