@@ -46,7 +46,7 @@ msg_info "Installing Twingate Connector..."
 export TWINGATE_ACCESS_TOKEN="${access_token}"
 export TWINGATE_REFRESH_TOKEN="${refresh_token}"
 export TWINGATE_NETWORK="${network}"
-export TWINGATE_LABEL_DEPLOYED_BY="linux"
+export TWINGATE_LABEL_DEPLOYED_BY="proxmox"
 curl -fsSL "https://binaries.twingate.com/connector/setup.sh" | bash >> /dev/null 2>&1
 if [[ $? -ne 0 ]]; then
     msg_error "Failed to set up Twingate Connector. Please check your tokens and network name."
