@@ -12,15 +12,15 @@
   "documentation": "https://www.twingate.com/docs/",
   "config_path": "/etc/twingate/connector.conf",
   "website": "https://www.twingate.com",
-  "logo": null,
-  "description": "Twingate connector enables zero-trust access to your private network.",
+  "logo": "https://avatars.githubusercontent.com/u/97470429?s=200&v=4",
+  "description": "Twingate Connectors are lightweight software components that establish secure, least-privileged access between private network resources and authorized users without exposing the network to the internet. They act as outbound-only bridges between your protected resources and the Twingate infrastructure, ensuring zero-trust access without the need for a VPN.",
   "install_methods": [
     {
       "type": "default",
       "script": "ct/twingate-connector.sh",
       "resources": {
         "cpu": 1,
-        "ram": 512,
+        "ram": 2048,
         "hdd": 2,
         "os": "Ubuntu",
         "version": "22.04"

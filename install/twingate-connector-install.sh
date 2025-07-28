@@ -49,7 +49,7 @@ export TWINGATE_NETWORK="${network}"
 export TWINGATE_LABEL_DEPLOYED_BY="proxmox"
 curl -fsSL "https://binaries.twingate.com/connector/setup.sh" | bash >> /dev/null 2>&1
 if [[ $? -ne 0 ]]; then
-    msg_error "Failed to set up Twingate Connector. Please check your tokens and network name."
+    msg_error "Failed to set up Twingate Connector. Please double check your tokens and network name."
     exit 1
 fi
 msg_ok "Twingate Connector installed!"
