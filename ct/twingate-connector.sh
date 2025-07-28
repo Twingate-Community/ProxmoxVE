@@ -8,7 +8,7 @@ source <(curl -fsSL https://raw.githubusercontent.com/Twingate-Community/Proxmox
 APP="twingate-connector"
 var_tags="${var_tags:-network;connector;twingate}"
 var_cpu="${var_cpu:-1}"
-var_ram="${var_ram:-512}"
+var_ram="${var_ram:-2048}"
 var_disk="${var_disk:-2}"
 var_os="${var_os:-ubuntu}"
 var_version="${var_version:-22.04}"
